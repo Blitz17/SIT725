@@ -5,3 +5,5 @@ function generateRandom() {
     const randomNumber = Math.floor(Math.random() * 1000); 
     document.getElementById("display").innerText = `${randomText} - ${randomNumber}`;
 }
+
+setInterval(generateRandom, 5000);
