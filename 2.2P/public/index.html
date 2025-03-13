@@ -15,7 +15,7 @@
     // Attach an event listener to the button
     document.getElementById('fetchQuoteBtn').addEventListener('click', function() {
       // Make a GET request to your API endpoint
-      fetch('/api/quote')
+      fetch('http://localhost:3001/api/quote')
         .then(response => response.json())
         .then(data => {
           // Display the fetched quote in the page
