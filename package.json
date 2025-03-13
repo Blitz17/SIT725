@@ -1,0 +1,27 @@
+{
+  "name": "sit725",
+  "version": "1.0.0",
+  "description": "coursework for SIT725",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node 2.2P/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Blitz17/SIT725.git"
+  },
+  "keywords": [
+    "Dhanush",
+    "SIT725"
+  ],
+  "author": "Dhanush",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Blitz17/SIT725/issues"
+  },
+  "homepage": "https://github.com/Blitz17/SIT725#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
