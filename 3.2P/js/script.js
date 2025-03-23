@@ -17,38 +17,66 @@ const clickMe = () => {
     $('#successMessage').remove();
 }
 const submitForm = () => {
-    let formData = {};
-    formData.first_name = $('#first_name').val();
-    formData.last_name = $('#last_name').val();
-    formData.password = $('#password').val();
-    formData.email = $('#email').val();
-    console.log("Form Data Submitted: ", formData);
+    if (validateForm()) {
+        let formData = {};
+        formData.first_name = $('#first_name').val();
+        formData.last_name = $('#last_name').val();
+        formData.password = $('#password').val();
+        formData.email = $('#email').val();
+        console.log("Form Data Submitted: ", formData);
 
-    // Remove any previous success message (clear old messages before appending a new one)
-    $('#successMessage').remove();
+        $('#successMessage').remove();
 
-    // Create a success message and show it
-    let successMessage = $('<div id="successMessage" class="success-message">Form Submitted Successfully!</div>');
-    $('.modal-content').append(successMessage);
+        // Create a success message and show it
+        let successMessage = $('<div id="successMessage" class="success-message">Form Submitted Successfully!</div>');
+        $('.modal-content').append(successMessage);
 
-    // Delay closing the modal after 2 seconds (for example 2 seconds)
-    setTimeout(() => {
-        $('#modal1').modal('close'); // Close modal after success message appears
-    }, 2000);
+        setTimeout(() => {
+            $('#modal1').modal('close');
+        }, 2000);
 
-    // Optionally clear the form inputs after the modal closes
-    setTimeout(() => {
-        $('#formSubmitSection')[0].reset();
-    }, 2000);
+        setTimeout(() => {
+            $('#formSubmitSection')[0].reset();
+        }, 2000);
+    }
 }
 
 const clearModalForm = () => {
-    // Reset the inputs inside the modal
     $('#formSubmitSection')[0].reset();
 
-    // Remove any success message if it's visible
     $('#successMessage').remove();
 }
+
+const validateForm = () => {
+    let isValid = true;
+
+    if ($('#first_name').val() === '') {
+        isValid = false;
+        alert("First Name is required!");
+        return isValid;
+    }
+
+    if ($('#last_name').val() === '') {
+        isValid = false;
+        alert("Last Name is required!");
+        return isValid;
+    }
+
+    if ($('#password').val() === '') {
+        isValid = false;
+        alert("Password is required!");
+        return isValid;
+    }
+
+    if ($('#email').val() === '') {
+        isValid = false;
+        alert("Email is required!");
+        return isValid;
+    }
+
+    return isValid;
+};
+
 const addCards = (items) => {
     items.forEach(item => {
         let itemToAppend = '<div class="col s4 center-align">' +
@@ -63,6 +91,7 @@ const addCards = (items) => {
     });
 }
 $(document).ready(function () {
+    $('.carousel').carousel();
     $('.materialboxed').materialbox();
     $('#formSubmit').click(() => {
         submitForm();
@@ -72,4 +101,7 @@ $(document).ready(function () {
     });
     addCards(cardList);
     $('.modal').modal();
+    $('#resetForm').click(() => {
+        clearModalForm();
+    });
 });
