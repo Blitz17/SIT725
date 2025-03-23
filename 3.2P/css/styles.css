@@ -17,7 +17,28 @@ nav, .nav-wrapper, .brand-logo, .right {
 }
 .materialboxed-image {
     width: 30%;
-    height: auto; /* Maintain aspect ratio */
+    height: auto;
     display: block;
-    margin: 0 auto; /* Center the image */
+    margin: 0 auto;
+}
+
+.success-message {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    width: 95%;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 10px;
+    border-radius: 10px;
+}
+
+.modal {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.modal {
+    transition: border-radius 0.3s ease-in-out;
 }
