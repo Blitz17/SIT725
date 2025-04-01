@@ -1,7 +1,10 @@
 var express = require("express")
 var app = express()
 var port = process.env.port || 3004
+const cors = require('cors');  
+
 const mongoose = require('mongoose');
+app.use(cors()); 
 
 
 // Middleware
@@ -29,9 +32,11 @@ mongoose.connect('mongodb://localhost:27017/myprojectDB', {
   
   // 3. REST API route
   app.get('/api/projects', async (req, res) => {
+    console.log("API endpoint hit!");
     const projects = await Project.find({});
+    console.log("Projects fetched:", projects);
     res.json({ statusCode: 200, data: projects, message: 'Success' });
-  });
+});
   
   // 4. Start server
   
