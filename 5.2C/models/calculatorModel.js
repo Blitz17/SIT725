@@ -1,16 +1,39 @@
+const history = [];
+
 function calculate(num1, num2, operation) {
+    console.log(`[MODEL] Performing ${operation} on ${num1} and ${num2}`);
+    let result;
     switch (operation) {
         case 'add':
-            return num1 + num2;
+            result = num1 + num2;
+            break;
         case 'subtract':
-            return num1 - num2;
+            result = num1 - num2;
+            break;
         case 'multiply':
-            return num1 * num2;
+            result = num1 * num2;
+            break;
         case 'divide':
-            return num2 !== 0 ? num1 / num2 : 'Cannot divide by zero';
+            if (num2 === 0) throw new Error('Cannot divide by zero');
+            result = num1 / num2;
+            break;
         default:
-            return 'Invalid operation';
+            throw new Error('Invalid operation');
     }
+    const command = { operation, num1, num2, result };
+    history.push(command);
+    console.log(`[MODEL] Operation stored in history:`, command);
+    return result;
 }
 
-module.exports = { calculate };
+function getHistory() {
+    console.log('[MODEL] Retrieving history');
+    return history;
+}
+
+function clearHistory() {
+    console.log('[MODEL] Clearing history');
+    history.length = 0;
+}
+
+module.exports = { calculate, getHistory, clearHistory };

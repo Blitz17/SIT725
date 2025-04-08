@@ -1,21 +1,24 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const cors = require('cors');
 const path = require('path');
-const { handleCalculation } = require('./controllers/calculatorcontroller');
-
 const app = express();
-const PORT = 3000;
+const port = 3000;
+const calculatorRoutes = require('./routes/calculatorroutes');
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cors());
+
+// Serve frontend from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'calculator.html'));
+    res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
-app.post('/calculate', handleCalculation);
+// Use calculator routes
+app.use('/', calculatorRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+    console.log(`[SERVER] Server running at http://localhost:${port}`);
 });
+
