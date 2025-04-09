@@ -8,14 +8,12 @@ const calculatorRoutes = require('./routes/calculatorroutes');
 app.use(express.json());
 app.use(cors());
 
-// Serve frontend from public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views/index.html'));
 });
 
-// Use calculator routes
 app.use('/', calculatorRoutes);
 
 app.listen(port, () => {
